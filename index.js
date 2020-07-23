@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 
-const token = "NzA2NTg3NTc5NDYxNTMzNzM3.Xq8bnw.BeoAfVwDzY5ENif3sJTRvVU-Ils";
-
 const PREFIX = "$";
 
 bot.on("ready", () => {
@@ -56,9 +54,9 @@ bot.on("message", (message) => {
       case "help":
         message.channel.send(`
         Comandos
-        - **$oe** : Saludo
-        - **$clear** : Eliminar mensajes (máximo 20 mensajes)
-        - **$team** : Etiqueta a tus amigos para avisarles que vas a jugar y se unan a tu canal de voz
+        - **${PREFIX}oe** : Saludo
+        - **${PREFIX}clear** : Eliminar mensajes (máximo 20 mensajes)
+        - **${PREFIX}team** : Etiqueta a tus amigos para avisarles que vas a jugar y se unan a tu canal de voz
         `);
         break;
 
@@ -67,8 +65,8 @@ bot.on("message", (message) => {
     }
   } else if (message.mentions.users.find((user) => user === bot.user)) {
     message.react("😡");
-    message.reply("Que quieres mano? usa `$help` si no sabes que hacer");
+    message.reply(`Que quieres mano? usa \`${PREFIX}help\` si no sabes que hacer`);
   }
 });
 
-bot.login(token);
+bot.login(process.env.TOKEN);
