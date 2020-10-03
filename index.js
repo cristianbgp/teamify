@@ -4,6 +4,8 @@ const fetch = require("node-fetch");
 const bot = new Discord.Client();
 
 const PREFIX = "$";
+const MUSIC_BOT_PREFIX = "-";
+const MUSIC_CHANNEL_ID = "355103241509273610";
 
 bot.on("ready", () => {
   console.log("Bot is online");
@@ -88,6 +90,42 @@ bot.on("message", (message) => {
     message.reply(
       `Que quieres mano? usa \`${PREFIX}help\` si no sabes que hacer`
     );
+  } else if (
+    message.content.indexOf(MUSIC_BOT_PREFIX) === 0 &&
+    message.channel.id !== MUSIC_CHANNEL_ID
+  ) {
+    const args = message.content.substring(PREFIX.length).split(" ");
+    switch (args[0]) {
+      case "play":
+        message.react("😡");
+        message.reply(
+          `Usa ${message.guild.channels.cache
+            .get(MUSIC_CHANNEL_ID)
+            .toString()} para pedir música`
+        );
+        break;
+
+      case "p":
+        message.react("😡");
+        message.reply(
+          `Usa ${message.guild.channels.cache
+            .get(MUSIC_CHANNEL_ID)
+            .toString()} para pedir música`
+        );
+        break;
+
+      case "P":
+        message.react("😡");
+        message.reply(
+          `Usa ${message.guild.channels.cache
+            .get(MUSIC_CHANNEL_ID)
+            .toString()} para pedir música`
+        );
+        break;
+
+      default:
+        break;
+    }
   }
 });
 
